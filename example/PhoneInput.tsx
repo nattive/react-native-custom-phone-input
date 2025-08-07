@@ -1,5 +1,5 @@
 import React, { JSX, PureComponent } from "react";
-import { View, Text, TouchableOpacity, Image, TextInput, Modal, FlatList, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { View, Text, TouchableOpacity, Image, TextInput, Modal, FlatList, StyleProp, TextStyle, ViewStyle, ImageStyle } from "react-native";
 import { PhoneNumberUtil } from "google-libphonenumber";
 import * as flags from "./flagsIndex";
 
@@ -18,26 +18,26 @@ export interface PhoneInputTheme {
   inputBackground?: string;
   modalBackground?: string;
   modalOverlay?: string;
-  
+
   // Text colors
   labelTextColor?: string;
   inputTextColor?: string;
   placeholderTextColor?: string;
   codeTextColor?: string;
   dropdownTextColor?: string;
-  
+
   // Border colors
   inputBorderColor?: string;
   modalBorderColor?: string;
-  
+
   // Selection and focus colors
   selectionColor?: string;
-  
+
   // Flag styling
   flagBorderRadius?: number;
   flagSize?: number;
   flagShape?: 'round' | 'square';
-  
+
   // Dropdown arrow
   dropdownArrowColor?: string;
   dropdownArrowOpacity?: number;
@@ -63,6 +63,9 @@ export interface PhoneInputProps {
   textContainerStyle?: StyleProp<ViewStyle>;
   textInputStyle?: StyleProp<TextStyle>;
   codeTextStyle?: StyleProp<TextStyle>;
+  flagStyle?: StyleProp<ImageStyle>;
+  flagContainerStyle?: StyleProp<ViewStyle>;
+  countryButtonStyle?: StyleProp<ViewStyle>;
   textInputProps?: any;
   theme?: PhoneInputTheme;
   // Custom render props
@@ -110,26 +113,26 @@ const defaultTheme: PhoneInputTheme = {
   inputBackground: '#FFFFFF',
   modalBackground: '#FFFFFF',
   modalOverlay: 'rgba(0,0,0,0.5)',
-  
+
   // Text colors
   labelTextColor: '#666666',
   inputTextColor: '#000000',
   placeholderTextColor: '#999999',
   codeTextColor: '#666666',
   dropdownTextColor: '#666666',
-  
+
   // Border colors
   inputBorderColor: '#E5E5E5',
   modalBorderColor: '#EEEEEE',
-  
+
   // Selection and focus colors
   selectionColor: '#007AFF',
-  
+
   // Flag styling
   flagBorderRadius: 999,
   flagSize: 30,
   flagShape: 'round',
-  
+
   // Dropdown arrow
   dropdownArrowColor: '#666666',
   dropdownArrowOpacity: 0.6,
@@ -150,8 +153,8 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
       number: props.value
         ? props.value
         : props.defaultValue
-        ? props.defaultValue
-        : "",
+          ? props.defaultValue
+          : "",
       modalVisible: false,
       countryCode: props.defaultCode ? props.defaultCode : "US",
       disabled: props.disabled || false,
@@ -237,14 +240,14 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
   renderDropdownImage = (): JSX.Element => {
     const { theme = {} } = this.props;
     const mergedTheme = { ...defaultTheme, ...theme };
-    
+
     return (
       <Image
         source={{ uri: dropDown }}
         resizeMode="contain"
-        style={{ 
-          height: 12, 
-          width: 8, 
+        style={{
+          height: 12,
+          width: 8,
           opacity: mergedTheme.dropdownArrowOpacity,
           tintColor: mergedTheme.dropdownArrowColor
         }}
@@ -255,7 +258,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
   renderCountryItem = ({ item }: { item: Country }): JSX.Element => {
     const { theme = {} } = this.props;
     const mergedTheme = { ...defaultTheme, ...theme };
-    
+
     return (
       <TouchableOpacity
         style={{
@@ -267,11 +270,11 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
         }}
         onPress={() => this.onSelectCountry(item)}
       >
-        <Image 
+        <Image
           source={getFlagImage(item.code)}
-          style={{ 
-            width: 20, 
-            height: 15, 
+          style={{
+            width: 20,
+            height: 15,
             marginRight: 10,
             borderRadius: mergedTheme.flagShape === 'round' ? 7.5 : 0
           }}
@@ -295,6 +298,9 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
       containerStyle,
       textContainerStyle,
       textInputStyle,
+      flagStyle,
+      flagContainerStyle,
+      countryButtonStyle,
       layout = "codeInInput",
       showSearch = true,
       searchPlaceholder = "Search countries...",
@@ -307,16 +313,16 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
     } = this.props;
     const { modalVisible, code, countryCode, number, disabled, searchText } = this.state;
     const selectedCountry = countries.find(c => c.code === countryCode);
-    
+
     // Filter countries based on search text
     const filteredCountries = searchText
-      ? countries.filter(country => 
-          country.name.toLowerCase().includes(searchText.toLowerCase()) ||
-          country.callingCode.includes(searchText) ||
-          country.code.toLowerCase().includes(searchText.toLowerCase())
-        )
+      ? countries.filter(country =>
+        country.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        country.callingCode.includes(searchText) ||
+        country.code.toLowerCase().includes(searchText.toLowerCase())
+      )
       : countries;
-    
+
     // Merge theme with defaults
     const mergedTheme = { ...defaultTheme, ...theme };
 
@@ -324,17 +330,17 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
       <View>
         {/* Labels */}
         <View style={{ flexDirection: 'row', marginBottom: 8, gap: 10 }}>
-         
-          <Text style={{ 
-            fontSize: 14, 
-            color: mergedTheme.labelTextColor, 
+
+          <Text style={{
+            fontSize: 14,
+            color: mergedTheme.labelTextColor,
             fontWeight: '500',
-            flex: 1, 
+            flex: 1,
           }}>
             Mobile number
           </Text>
         </View>
-        
+
         <View
           style={[
             {
@@ -346,8 +352,8 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
             containerStyle ? containerStyle : {},
           ]}
         >
-          <View> 
-            
+          <View>
+
           </View>
           <TouchableOpacity
             style={[
@@ -363,6 +369,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
               },
               layout === "codeInSelector" ? { width: '25%' } : {},
               layout === "codeWithFlag" ? { width: '35%' } : {},
+              countryButtonStyle,
             ]}
             disabled={disabled}
             onPress={() => this.setState({ modalVisible: true })}
@@ -370,14 +377,14 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
             {renderFlag && selectedCountry ? (
               renderFlag(selectedCountry)
             ) : (
-              <View style={{ alignItems: 'center', flexDirection: 'row', gap: 5 }}>
-                <Image 
+              <View style={[{ alignItems: 'center', flexDirection: 'row', gap: 5 }, flagContainerStyle]}>
+                <Image
                   source={getFlagImage(selectedCountry ? selectedCountry.code : "us")}
-                  style={{ 
-                    width: mergedTheme.flagSize || 30, 
-                    height: mergedTheme.flagSize || 30, 
-                    borderRadius: mergedTheme.flagShape === 'round' ? (mergedTheme.flagSize || 30) / 2 : mergedTheme.flagBorderRadius 
-                  }}
+                  style={[{
+                    width: mergedTheme.flagSize || 30,
+                    height: mergedTheme.flagSize || 30,
+                    borderRadius: mergedTheme.flagShape === 'round' ? (mergedTheme.flagSize || 30) / 2 : mergedTheme.flagBorderRadius
+                  }, flagStyle]}
                   resizeMode="cover"
                 />
                 {layout === "codeWithFlag" && selectedCountry && (
@@ -457,7 +464,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
           </View>
         </View>
 
-                {renderCountryModal ? (
+        {renderCountryModal ? (
           renderCountryModal({
             visible: modalVisible,
             onClose: () => this.setState({ modalVisible: false, searchText: "" }),
@@ -498,7 +505,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
                     Select Country
                   </Text>
                 </View>
-                
+
                 {showSearch && (
                   <View style={{
                     padding: 5,
@@ -521,7 +528,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
                     />
                   </View>
                 )}
-                
+
                 <FlatList
                   data={filteredCountries}
                   renderItem={({ item }) => {

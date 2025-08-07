@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TextInputProps, StyleProp, TextStyle, ViewStyle } from "react-native";
+import { TextInputProps, StyleProp, TextStyle, ViewStyle, ImageStyle } from "react-native";
 
 export interface Country {
   code: string;
@@ -13,26 +13,26 @@ export interface PhoneInputTheme {
   inputBackground?: string;
   modalBackground?: string;
   modalOverlay?: string;
-  
+
   // Text colors
   labelTextColor?: string;
   inputTextColor?: string;
   placeholderTextColor?: string;
   codeTextColor?: string;
   dropdownTextColor?: string;
-  
+
   // Border colors
   inputBorderColor?: string;
   modalBorderColor?: string;
-  
+
   // Selection and focus colors
   selectionColor?: string;
-  
+
   // Flag styling
   flagBorderRadius?: number;
   flagSize?: number;
   flagShape?: 'round' | 'square';
-  
+
   // Dropdown arrow
   dropdownArrowColor?: string;
   dropdownArrowOpacity?: number;
@@ -60,6 +60,9 @@ export interface PhoneInputProps {
   textContainerStyle?: StyleProp<ViewStyle>;
   textInputStyle?: StyleProp<TextStyle>;
   codeTextStyle?: StyleProp<TextStyle>;
+  flagStyle?: StyleProp<ImageStyle>;
+  flagContainerStyle?: StyleProp<ViewStyle>;
+  countryButtonStyle?: StyleProp<ViewStyle>;
   textInputProps?: TextInputProps;
   theme?: PhoneInputTheme;
   // Custom render props
@@ -94,7 +97,7 @@ export interface PhoneInputState {
 
 export default class PhoneInput extends Component<PhoneInputProps, PhoneInputState> {
   constructor(props: PhoneInputProps);
-  
+
   getCallingCode: (countryCode: string) => string;
   getCountryCode: () => string;
   getCurrentCallingCode: () => string;
