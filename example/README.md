@@ -1,6 +1,6 @@
 # Phone Number Input Example
 
-This is an Expo app that demonstrates the `expo-phone-number-input` component.
+This is an Expo app that demonstrates the `react-native-international-phone-input` component.
 
 ## Features Demonstrated
 

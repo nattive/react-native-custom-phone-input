@@ -22,9 +22,9 @@ A comprehensive, feature-rich phone number input component for React Native with
 ## Installation
 
 ```bash
-npm install react-native-phone-number-input
+npm install react-native-international-phone-input
 # or
-yarn add react-native-phone-number-input
+yarn add react-native-international-phone-input
 ```
 
 ## Dependencies
@@ -39,7 +39,7 @@ yarn add google-libphonenumber
 
 ```tsx
 import React, { useState, useRef } from 'react';
-import PhoneInput from 'react-native-phone-number-input';
+import PhoneInput from 'react-native-international-phone-input';
 
 export default function App() {
   const [value, setValue] = useState('');
@@ -282,7 +282,7 @@ const { formattedNumber } = phoneInput.current?.getNumberAfterPossiblyEliminatin
 Use the built-in validation or the standalone function:
 
 ```tsx
-import { isValidNumber } from 'react-native-phone-number-input';
+import { isValidNumber } from 'react-native-international-phone-input';
 
 // Using component method
 const isValid = phoneInput.current?.isValidNumber(phoneNumber);
@@ -296,7 +296,7 @@ const isValid = isValidNumber(phoneNumber, countryCode);
 Full TypeScript support with comprehensive type definitions:
 
 ```tsx
-import PhoneInput, { Country, PhoneInputTheme } from 'react-native-phone-number-input';
+import PhoneInput, { Country, PhoneInputTheme } from 'react-native-international-phone-input';
 
 const customTheme: PhoneInputTheme = {
   flagShape: 'round',
@@ -313,7 +313,7 @@ const handleCountryChange = (country: Country) => {
 ```tsx
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import PhoneInput from 'react-native-phone-number-input';
+import PhoneInput from 'react-native-international-phone-input';
 
 export default function App() {
   const [value, setValue] = useState('');
