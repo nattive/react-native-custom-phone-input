@@ -53,7 +53,7 @@ export interface PhoneInputProps {
   autoFocus?: boolean;
   placeholder?: string;
   disableArrowIcon?: boolean;
-  layout?: "first" | "second" | "third";
+  layout?: "codeInInput" | "codeInSelector" | "codeWithFlag";
   showSearch?: boolean;
   searchPlaceholder?: string;
   codeLabel?: string;
@@ -298,7 +298,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
       containerStyle,
       textContainerStyle,
       textInputStyle,
-      layout = "first",
+      layout = "codeInInput",
       showSearch = true,
       searchPlaceholder = "Search countries...",
       codeLabel = "Code",
@@ -377,8 +377,8 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
                 paddingHorizontal: 15,
                 gap: 8,
               },
-              layout === "second" ? { width: '25%' } : {},
-              layout === "third" ? { width: '35%' } : {},
+              layout === "codeInSelector" ? { width: '25%' } : {},
+              layout === "codeWithFlag" ? { width: '35%' } : {},
             ]}
             disabled={disabled}
             onPress={() => this.setState({ modalVisible: true })}
@@ -396,7 +396,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
                   }}
                   resizeMode="cover"
                 />
-                {layout === "third" && selectedCountry && (
+                {layout === "codeWithFlag" && selectedCountry && (
                   <Text style={[{
                     fontSize: 16,
                     color: mergedTheme.codeTextColor,
@@ -407,7 +407,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
                 )}
               </View>
             )}
-            {code && layout === "second" && (
+            {code && layout === "codeInSelector" && (
               <Text style={[{
                 fontSize: 16,
                 marginRight: 10,
@@ -433,7 +433,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
               textContainerStyle ? textContainerStyle : {},
             ]}
           >
-            {code && layout === "first" && (
+            {code && layout === "codeInInput" && (
               <Text style={[{
                 fontSize: 16,
                 fontWeight: '400',

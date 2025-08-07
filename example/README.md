@@ -1,6 +1,6 @@
 # Phone Number Input Example
 
-This is an Expo app that demonstrates the `react-native-international-phone-input` component.
+This is an Expo app that demonstrates the `react-native-custom-phone-input` component.
 
 ## Features Demonstrated
 
@@ -39,7 +39,7 @@ The example app shows:
 ## Component Props Used
 
 - `defaultCode`: Sets initial country (US)
-- `layout`: "first" layout style
+- `layout`: "codeInInput" layout style
 - `withDarkTheme`: Enables dark theme
 - `withShadow`: Adds shadow effects
 - `autoFocus`: Auto-focuses on component mount

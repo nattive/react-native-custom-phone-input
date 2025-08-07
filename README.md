@@ -22,9 +22,9 @@ A comprehensive, feature-rich phone number input component for React Native with
 ## Installation
 
 ```bash
-npm install react-native-international-phone-input
+npm install react-native-custom-phone-input
 # or
-yarn add react-native-international-phone-input
+yarn add react-native-custom-phone-input
 ```
 
 ## Dependencies
@@ -39,7 +39,7 @@ yarn add google-libphonenumber
 
 ```tsx
 import React, { useState, useRef } from 'react';
-import PhoneInput from 'react-native-international-phone-input';
+import PhoneInput from 'react-native-custom-phone-input';
 
 export default function App() {
   const [value, setValue] = useState('');
@@ -51,7 +51,7 @@ export default function App() {
       ref={phoneInput}
       defaultValue={value}
       defaultCode="US"
-      layout="first"
+      layout="codeInInput"
       onChangeText={(text) => {
         setValue(text);
       }}
@@ -78,7 +78,7 @@ export default function App() {
 | `placeholder` | `string` | `"(415) 555-0132"` | Input placeholder text |
 | `disabled` | `boolean` | `false` | Disable the input |
 | `autoFocus` | `boolean` | `false` | Auto focus the input |
-| `layout` | `"first"` \| `"second"` \| `"third"` | `"first"` | Layout style |
+| `layout` | `"codeInInput"` \| `"codeInSelector"` \| `"codeWithFlag"` | `"codeInInput"` | Layout style |
 
 ### Styling Props
 
@@ -248,14 +248,14 @@ Implement your own country selection modal (e.g., for bottom sheets):
 
 ## Layouts
 
-### Layout "first" (default)
-Country flag + Country code in main input + Phone number
+### Layout "codeInInput" (default)
+Country flag in selector + Country code in main input + Phone number
 
-### Layout "second"  
-Country flag + Country code in picker + Phone number
+### Layout "codeInSelector"  
+Country flag + Country code in selector (compact) + Phone number
 
-### Layout "third"
-Country flag + Country code in picker + Phone number
+### Layout "codeWithFlag"
+Country flag + Country code together in selector + Phone number
 
 ## Methods
 
@@ -282,7 +282,7 @@ const { formattedNumber } = phoneInput.current?.getNumberAfterPossiblyEliminatin
 Use the built-in validation or the standalone function:
 
 ```tsx
-import { isValidNumber } from 'react-native-international-phone-input';
+import { isValidNumber } from 'react-native-custom-phone-input';
 
 // Using component method
 const isValid = phoneInput.current?.isValidNumber(phoneNumber);
@@ -296,7 +296,7 @@ const isValid = isValidNumber(phoneNumber, countryCode);
 Full TypeScript support with comprehensive type definitions:
 
 ```tsx
-import PhoneInput, { Country, PhoneInputTheme } from 'react-native-international-phone-input';
+import PhoneInput, { Country, PhoneInputTheme } from 'react-native-custom-phone-input';
 
 const customTheme: PhoneInputTheme = {
   flagShape: 'round',
@@ -313,7 +313,7 @@ const handleCountryChange = (country: Country) => {
 ```tsx
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import PhoneInput from 'react-native-international-phone-input';
+import PhoneInput from 'react-native-custom-phone-input';
 
 export default function App() {
   const [value, setValue] = useState('');
@@ -330,7 +330,7 @@ export default function App() {
         ref={phoneInput}
         defaultValue={value}
         defaultCode="US"
-        layout="first"
+        layout="codeInInput"
         onChangeText={(text) => {
           setValue(text);
         }}

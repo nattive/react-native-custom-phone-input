@@ -122,13 +122,13 @@ export default function App() {
         )}
 
         <View style={styles.inputContainer}>
-          <Text style={styles.sectionTitle}>Default Component:</Text>
+          <Text style={styles.sectionTitle}>Layout "codeInInput" (Default):</Text>
           {/* @ts-ignore */}
           <PhoneInput
             ref={phoneInput}
             defaultValue={value}
             defaultCode="US"
-            layout="first"
+            layout="codeInInput"
             onChangeText={(text: string) => {
               setValue(text);
             }}
@@ -145,12 +145,12 @@ export default function App() {
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.sectionTitle}>Custom Render Props:</Text>
+          <Text style={styles.sectionTitle}>Layout "codeInSelector" (Compact):</Text>
           {/* @ts-ignore */}
           <PhoneInput
             defaultValue={value}
             defaultCode="GB"
-            layout="second"
+            layout="codeInSelector"
             onChangeText={(text: string) => {
               setValue(text);
             }}
@@ -172,7 +172,7 @@ export default function App() {
           <PhoneInput
             defaultValue={value}
             defaultCode="US"
-            layout="first"
+            layout="codeInInput"
             onChangeText={(text: string) => {
               setValue(text);
             }}
@@ -198,7 +198,7 @@ export default function App() {
           <PhoneInput
             defaultValue={value}
             defaultCode="GB"
-            layout="first"
+            layout="codeInInput"
             onChangeText={(text: string) => {
               setValue(text);
             }}
@@ -220,12 +220,12 @@ export default function App() {
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.sectionTitle}>Layout "Third" (Flag + Code):</Text>
+          <Text style={styles.sectionTitle}>Layout "codeWithFlag" (Flag + Code):</Text>
           {/* @ts-ignore */}
           <PhoneInput
             defaultValue={value}
             defaultCode="FR"
-            layout="third"
+            layout="codeWithFlag"
             onChangeText={(text: string) => {
               setValue(text);
             }}
@@ -243,7 +243,7 @@ export default function App() {
           <PhoneInput
             defaultValue={value}
             defaultCode="US"
-            layout="first"
+            layout="codeInInput"
             showSearch={true}
             searchPlaceholder="Find your country..."
             renderCountryModal={renderCustomCountryModal}
@@ -298,7 +298,7 @@ export default function App() {
           <Text style={styles.infoText}>• Customizable styling</Text>
           <Text style={styles.infoText}>• TypeScript support</Text>
           <Text style={styles.infoText}>• Custom render props</Text>
-          <Text style={styles.infoText}>• Three layout options: first, second, third</Text>
+          <Text style={styles.infoText}>• Three layout options: codeInInput, codeInSelector, codeWithFlag</Text>
         </View>
       </ScrollView>
     </View>

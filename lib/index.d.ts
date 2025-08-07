@@ -48,7 +48,7 @@ export interface PhoneInputProps {
   autoFocus?: boolean;
   placeholder?: string;
   disableArrowIcon?: boolean;
-  layout?: "first" | "second" | "third";
+  layout?: "codeInInput" | "codeInSelector" | "codeWithFlag";
   showSearch?: boolean;
   searchPlaceholder?: string;
   codeLabel?: string;
