@@ -97,6 +97,7 @@ export default function App() {
 | `flagStyle` | `StyleProp<ImageStyle>` | - | Flag image style |
 | `flagContainerStyle` | `StyleProp<ViewStyle>` | - | Flag container style |
 | `countryButtonStyle` | `StyleProp<ViewStyle>` | - | Country selector button style |
+| `countryButtonWrapperStyle` | `StyleProp<ViewStyle>` | - | Country selector button wrapper style |
 
 ### Search & Modal Props
 

@@ -66,6 +66,7 @@ export interface PhoneInputProps {
   flagStyle?: StyleProp<ImageStyle>;
   flagContainerStyle?: StyleProp<ViewStyle>;
   countryButtonStyle?: StyleProp<ViewStyle>;
+  countryButtonWrapperStyle?: StyleProp<ViewStyle>;
   textInputProps?: any;
   theme?: PhoneInputTheme;
   // Custom render props
@@ -301,6 +302,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
       flagStyle,
       flagContainerStyle,
       countryButtonStyle,
+      countryButtonWrapperStyle,
       layout = "codeInInput",
       showSearch = true,
       searchPlaceholder = "Search countries...",
@@ -370,6 +372,7 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
               layout === "codeInSelector" ? { width: '25%' } : {},
               layout === "codeWithFlag" ? { width: '35%' } : {},
               countryButtonStyle,
+              countryButtonWrapperStyle,
             ]}
             disabled={disabled}
             onPress={() => this.setState({ modalVisible: true })}

@@ -63,6 +63,7 @@ export interface PhoneInputProps {
   flagStyle?: StyleProp<ImageStyle>;
   flagContainerStyle?: StyleProp<ViewStyle>;
   countryButtonStyle?: StyleProp<ViewStyle>;
+  countryButtonWrapperStyle?: StyleProp<ViewStyle>;
   textInputProps?: TextInputProps;
   theme?: PhoneInputTheme;
   // Custom render props
