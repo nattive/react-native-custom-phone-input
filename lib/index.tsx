@@ -375,20 +375,20 @@ export default class PhoneInput extends PureComponent<PhoneInputProps, PhoneInpu
         >
           <TouchableOpacity
             style={[
-              {
-                width: '35%',
-                backgroundColor: mergedTheme.inputBackground,
-                borderRadius: 12,
-                justifyContent: 'center',
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 15,
-                gap: 8,
-              },
+              countryButtonWrapperStyle ? countryButtonWrapperStyle :
+                {
+                  width: '35%',
+                  backgroundColor: mergedTheme.inputBackground,
+                  borderRadius: 12,
+                  justifyContent: 'center',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingHorizontal: 15,
+                  gap: 8,
+                },
               layout === "codeInSelector" ? { width: '25%' } : {},
               layout === "codeWithFlag" ? { width: '35%' } : {},
               countryButtonStyle,
-              countryButtonWrapperStyle,
             ]}
             disabled={disabled}
             onPress={() => this.setState({ modalVisible: true })}

@@ -1,6 +1,6 @@
 {
   "name": "react-native-custom-phone-input",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A comprehensive, feature-rich phone number input component for React Native with country picker, validation, theming, and customization options",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
