@@ -94,6 +94,9 @@ export default function App() {
 | `textContainerStyle` | `StyleProp<ViewStyle>` | - | Text input container style |
 | `textInputStyle` | `StyleProp<TextStyle>` | - | Text input style |
 | `codeTextStyle` | `StyleProp<TextStyle>` | - | Country code text style |
+| `flagStyle` | `StyleProp<ImageStyle>` | - | Flag image style |
+| `flagContainerStyle` | `StyleProp<ViewStyle>` | - | Flag container style |
+| `countryButtonStyle` | `StyleProp<ViewStyle>` | - | Country selector button style |
 
 ### Search & Modal Props
 
