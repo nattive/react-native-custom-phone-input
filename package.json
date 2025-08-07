@@ -1,40 +1,67 @@
 {
   "name": "react-native-phone-number-input",
-  "version": "2.1.0",
-  "description": "Phone Number Input Component",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "version": "2.0.0",
+  "description": "A comprehensive, feature-rich phone number input component for React Native with country picker, validation, theming, and customization options",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "lib/",
+    "README.md",
+    "LICENSE.md"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Tests not configured yet\"",
+    "start": "cd example && npm start",
+    "example": "cd example && npm start",
+    "build": "tsc",
+    "build:js": "tsc --outDir lib --target es5 --module commonjs",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/garganurag893/react-native-phone-number-input.git"
   },
-  "author": "anuraggarg",
+  "homepage": "https://github.com/garganurag893/react-native-phone-number-input#readme",
+  "bugs": {
+    "url": "https://github.com/garganurag893/react-native-phone-number-input/issues"
+  },
+  "author": "React Native Phone Input Contributors",
   "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+    "react": ">=16.8.0",
+    "react-native": ">=0.60.0"
   },
   "keywords": [
     "react-native",
     "phone",
     "telephone",
-    "phone input",
+    "phone-input",
     "input",
     "tel",
-    "input text",
     "international",
-    "react-native-component",
+    "country-picker",
+    "validation",
+    "libphonenumber",
+    "typescript",
     "ios",
-    "android"
+    "android",
+    "component",
+    "ui",
+    "theme",
+    "customizable"
   ],
   "dependencies": {
-    "google-libphonenumber": "^3.2.10",
-    "react-native-country-picker-modal": "^2.0.0"
+    "google-libphonenumber": "^3.2.42"
   },
   "devDependencies": {
-    "metro-react-native-babel-preset": "^0.61.0"
+    "@types/google-libphonenumber": "^7.4.30",
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.72.0",
+    "metro-react-native-babel-preset": "^0.77.0",
+    "typescript": "^5.0.0"
   }
 }

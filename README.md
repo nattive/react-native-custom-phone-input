@@ -1,218 +1,395 @@
-<div align="center">
-  <img src="./gif/Phone_Number_Input_Layout_1.gif" height="400" title="Anurag Garg"   alt="Anurag Garg" style="box-shadow: 0 20px 30px 3px rgba(9, 9, 16, 0.2);">
-  <img src="./gif/Phone_Number_Input_Layout_2.gif" height="400" title="Anurag Garg"   alt="Anurag Garg" style="box-shadow: 0 20px 30px 3px rgba(9, 9, 16, 0.2);">
-</div>
+# React Native Phone Number Input
 
-<br>
+A comprehensive, feature-rich phone number input component for React Native with country picker, validation, theming, and customization options.
 
-<h1 align="center">React Native Phone Number Input
-</h1>
+![Demo](./gif/Phone_Input_2.gif)
 
-<p align="center">Performance oriented React Native Phone Number Input with typings and proper validation for any country.
-</p>
+## Features
 
-<h6 align="center">Made with ❤️ by developer for developers</h6>
-
-<br>
-<p align="center">
-<img src="http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square" alt="build"/>
-<img src="https://img.shields.io/github/issues/garganurag893/react-native-phone-number-input" alt="build"/>
-<img src="https://img.shields.io/github/issues-pr/garganurag893/react-native-phone-number-input" alt="build"/>
-<img src="http://img.shields.io/:license-mit-blue.svg?style=flat-square" alt="build"/>
-</p>
-
-## Want to show your love?
-<p>Click on 🌟 button.</p>
-
-
-## Table of Contents
-
-- [Table of Contents](#table-of-contents)
-- [Installation](#installation)
-- [Features](#features)
-- [Usage](#usage)
-- [Props](#props)
-- [Methods](#methods)
-- [FAQ](#faq)
-  - [Is it supported and tested both on android and iOS?](#is-it-supported-and-tested-both-on-android-and-ios)
-  - [NSURLResponse allHeaderFields: unrecognized selector sent to instance XX crash?](#nsurlresponse-allheaderfields-unrecognized-selector-sent-to-instance-xx-crash)
-- [Contributing](#contributing)
-  - [Step 1](#step-1)
-  - [Step 2](#step-2)
-  - [Step 3](#step-3)
-- [Support](#support)
-- [License](#license)
-- [Hire](#hire)
+✅ **Comprehensive Country Support** - Built-in support for 250+ countries  
+✅ **Phone Number Validation** - Real-time validation using Google LibPhoneNumber  
+✅ **Customizable Theming** - Complete theme customization with sensible defaults  
+✅ **Search Functionality** - Built-in country search with customizable placeholder  
+✅ **Modern UI Design** - Clean, modern interface with rounded flags and inputs  
+✅ **Flexible Layouts** - Multiple layout options to fit your design  
+✅ **Custom Render Props** - Override any part of the component with custom renders  
+✅ **TypeScript Support** - Full TypeScript definitions included  
+✅ **Configurable Labels** - Customizable field labels  
+✅ **Custom Modal Support** - Implement your own country selection modal  
+✅ **Flag Shape Control** - Round or square flag options  
+✅ **Custom Dropdown Icon** - Replace the default dropdown with your own icon  
 
 ## Installation
 
 ```bash
-$ yarn add react-native-phone-number-input
+npm install react-native-phone-number-input
+# or
+yarn add react-native-phone-number-input
 ```
 
-OR
+## Dependencies
 
 ```bash
-$ npm i react-native-phone-number-input --save
+npm install google-libphonenumber
+# or  
+yarn add google-libphonenumber
 ```
 
-## Features
-
-- :iphone: Works with iOS and Android, Cross-platform :100:
-- :crossed_flags: Built-in country picker (uses [react-native-country-picker-modal][react-native-country-picker-modal])
-- :wrench: Completely customizable UI!
-- :heavy_check_mark: Proper validation (uses [google-libphonenumber](https://github.com/google/libphonenumber))
-
-## Usage
-
-For more complete example open [App.tsx](https://github.com/garganurag893/react-native-phone-number-input/blob/master/example/App.tsx)
+## Basic Usage
 
 ```tsx
-import React, { useState, useRef } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  StatusBar,
-  TouchableOpacity,
-  Text,
-} from "react-native";
-import PhoneInput from "react-native-phone-number-input";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import React, { useState, useRef } from 'react';
+import PhoneInput from 'react-native-phone-number-input';
 
-const App: React.FC = () => {
-  const [value, setValue] = useState("");
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
+export default function App() {
+  const [value, setValue] = useState('');
+  const [formattedValue, setFormattedValue] = useState('');
   const phoneInput = useRef<PhoneInput>(null);
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.container}>
-        <SafeAreaView style={styles.wrapper}>
-          {showMessage && (
-            <View style={styles.message}>
-              <Text>Value : {value}</Text>
-              <Text>Formatted Value : {formattedValue}</Text>
-              <Text>Valid : {valid ? "true" : "false"}</Text>
-            </View>
-          )}
-          <PhoneInput
-            ref={phoneInput}
-            defaultValue={value}
-            defaultCode="DM"
-            layout="first"
-            onChangeText={(text) => {
-              setValue(text);
-            }}
-            onChangeFormattedText={(text) => {
-              setFormattedValue(text);
-            }}
-            withDarkTheme
-            withShadow
-            autoFocus
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              const checkValid = phoneInput.current?.isValidNumber(value);
-              setShowMessage(true);
-              setValid(checkValid ? checkValid : false);
-            }}
-          >
-            <Text>Check</Text>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </View>
-    </>
-  );
-};
 
-export default App;
+  return (
+    <PhoneInput
+      ref={phoneInput}
+      defaultValue={value}
+      defaultCode="US"
+      layout="first"
+      onChangeText={(text) => {
+        setValue(text);
+      }}
+      onChangeFormattedText={(text) => {
+        setFormattedValue(text);
+      }}
+      withDarkTheme
+      withShadow
+      autoFocus
+    />
+  );
+}
 ```
 
 ## Props
 
-- `defaultCode?`: [CountryCode](https://github.com/xcarpentier/react-native-country-picker-modal/blob/master/src/types.ts#L252)
-- `withDarkTheme?`: boolean
-- `withShadow?`: boolean
-- `autoFocus?`: boolean
-- `defaultValue?`: string
-- `value?`: string
-- `disabled?`: boolean
-- `disableArrowIcon?`: boolean
-- `placeholder?`: string;
-- `onChangeCountry?`: (country: Country) => void;
-- `onChangeText?`: (text: string) => void;
-- `onChangeFormattedText?`: (text: string) => void;
-- `containerStyle?`: `StyleProp<ViewStyle>`;
-- `textContainerStyle?`: `StyleProp<ViewStyle>`;
-- `renderDropdownImage?`: `JSX.Element`;
-- `textInputProps?`: [TextInputProps](https://reactnative.dev/docs/textinput);
-- `textInputStyle?`: `StyleProp<TextStyle>`;
-- `codeTextStyle?`: `StyleProp<TextStyle>`;
-- `flagButtonStyle?`: `StyleProp<ViewStyle>`;
-- `countryPickerButtonStyle` : `StyleProp<ViewStyle>`;
-- `layout?`: "first" | "second";
-- `filterProps?`: CountryFilterProps;
-- `countryPickerProps?`: any;
+### Basic Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultCode` | `string` | `"US"` | Default country code |
+| `value` | `string` | `""` | Phone number value |
+| `defaultValue` | `string` | `""` | Default phone number value |
+| `placeholder` | `string` | `"(415) 555-0132"` | Input placeholder text |
+| `disabled` | `boolean` | `false` | Disable the input |
+| `autoFocus` | `boolean` | `false` | Auto focus the input |
+| `layout` | `"first"` \| `"second"` \| `"third"` | `"first"` | Layout style |
+
+### Styling Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `withShadow` | `boolean` | `false` | Add shadow to container |
+| `withDarkTheme` | `boolean` | `false` | Use dark theme for keyboard |
+| `containerStyle` | `StyleProp<ViewStyle>` | - | Container style |
+| `textContainerStyle` | `StyleProp<ViewStyle>` | - | Text input container style |
+| `textInputStyle` | `StyleProp<TextStyle>` | - | Text input style |
+| `codeTextStyle` | `StyleProp<TextStyle>` | - | Country code text style |
+
+### Search & Modal Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `showSearch` | `boolean` | `true` | Show search in country modal |
+| `searchPlaceholder` | `string` | `"Search countries..."` | Search input placeholder |
+| `disableArrowIcon` | `boolean` | `false` | Hide dropdown arrow |
+
+### Labels
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `codeLabel` | `string` | `"Code"` | Label for country code section |
+| `phoneNumberLabel` | `string` | `"Phone Number"` | Label for phone number section |
+
+### Callbacks
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `onChangeText` | `(text: string) => void` | Called when phone number changes |
+| `onChangeFormattedText` | `(text: string) => void` | Called with formatted number (includes country code) |
+| `onChangeCountry` | `(country: Country) => void` | Called when country changes |
+
+### Theme Customization
+
+The `theme` prop allows you to customize the entire appearance:
+
+```tsx
+interface PhoneInputTheme {
+  // Background colors
+  containerBackground?: string;
+  inputBackground?: string;
+  modalBackground?: string;
+  modalOverlay?: string;
+  
+  // Text colors
+  labelTextColor?: string;
+  inputTextColor?: string;
+  placeholderTextColor?: string;
+  codeTextColor?: string;
+  dropdownTextColor?: string;
+  
+  // Border colors
+  inputBorderColor?: string;
+  modalBorderColor?: string;
+  
+  // Selection and focus colors
+  selectionColor?: string;
+  
+  // Flag styling
+  flagBorderRadius?: number;
+  flagSize?: number;
+  flagShape?: 'round' | 'square';
+  
+  // Dropdown arrow
+  dropdownArrowColor?: string;
+  dropdownArrowOpacity?: number;
+}
+```
+
+#### Theme Example
+
+```tsx
+<PhoneInput
+  theme={{
+    containerBackground: 'transparent',
+    inputBackground: '#F5F5F5',
+    modalBackground: '#FFFFFF',
+    labelTextColor: '#333333',
+    inputTextColor: '#000000',
+    flagShape: 'round',
+    flagSize: 32,
+  }}
+/>
+```
+
+## Custom Render Props
+
+Override any part of the component with custom implementations:
+
+### Custom Flag Renderer
+
+```tsx
+<PhoneInput
+  renderFlag={(country) => (
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <Text style={{ fontSize: 20 }}>{country.code}</Text>
+    </View>
+  )}
+/>
+```
+
+### Custom Input Renderer
+
+```tsx
+<PhoneInput
+  renderInput={(props) => (
+    <TextInput
+      {...props}
+      style={[props.style, { borderWidth: 1, borderColor: 'blue' }]}
+    />
+  )}
+/>
+```
+
+### Custom Dropdown Icon
+
+```tsx
+<PhoneInput
+  renderDropdownIcon={() => (
+    <Icon name="chevron-down" size={16} color="#666" />
+  )}
+/>
+```
+
+### Custom Country Modal
+
+Implement your own country selection modal (e.g., for bottom sheets):
+
+```tsx
+<PhoneInput
+  renderCountryModal={({ visible, onClose, onSelectCountry, countries, searchText, onSearchChange }) => (
+    <Modal visible={visible} onRequestClose={onClose}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <TextInput
+          value={searchText}
+          onChangeText={onSearchChange}
+          placeholder="Search countries..."
+        />
+        <FlatList
+          data={countries}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => onSelectCountry(item)}>
+              <Text>{item.name} (+{item.callingCode})</Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    </Modal>
+  )}
+/>
+```
+
+### Custom Country Item
+
+```tsx
+<PhoneInput
+  renderCountryItem={(country, onSelect) => (
+    <TouchableOpacity onPress={() => onSelect(country)}>
+      <Text>{country.name} - {country.code}</Text>
+    </TouchableOpacity>
+  )}
+/>
+```
+
+## Layouts
+
+### Layout "first" (default)
+Country flag + Country code in main input + Phone number
+
+### Layout "second"  
+Country flag + Country code in picker + Phone number
+
+### Layout "third"
+Country flag + Country code in picker + Phone number
 
 ## Methods
 
-- `getCountryCode`: () => [CountryCode](https://github.com/xcarpentier/react-native-country-picker-modal/blob/master/src/types.ts#L252)
-- `getCallingCode`: () => string | undefined
-- `getNumberAfterPossiblyEliminatingZero`: () => {number: string , formattedNumber: string };
-- `isValidNumber`: (number: string) => boolean
+Access component methods via ref:
 
-## FAQ
+```tsx
+const phoneInput = useRef<PhoneInput>(null);
 
-### Is it supported and tested both on android and iOS?
+// Get country code
+const countryCode = phoneInput.current?.getCountryCode();
 
-YES
+// Get calling code  
+const callingCode = phoneInput.current?.getCurrentCallingCode();
 
-### NSURLResponse allHeaderFields: unrecognized selector sent to instance XX crash?
+// Validate number
+const isValid = phoneInput.current?.isValidNumber(phoneNumber);
 
-Upgrade `versions['Flipper'] ||= '~> 0.37.0'` in podfile.
+// Get formatted number
+const { formattedNumber } = phoneInput.current?.getNumberAfterPossiblyEliminatingZero();
+```
 
-## Contributing
+## Validation
 
-> To get started...
+Use the built-in validation or the standalone function:
 
-### Step 1
+```tsx
+import { isValidNumber } from 'react-native-phone-number-input';
 
-- **Option 1**
+// Using component method
+const isValid = phoneInput.current?.isValidNumber(phoneNumber);
 
-  - 🍴 Fork this repo!
+// Using standalone function  
+const isValid = isValidNumber(phoneNumber, countryCode);
+```
 
-- **Option 2**
-  - 👯 Clone this repo to your local machine using `https://github.com/garganurag893/react-native-phone-number-input`
+## TypeScript
 
-### Step 2
+Full TypeScript support with comprehensive type definitions:
 
-- **HACK AWAY!** 🔨🔨🔨
+```tsx
+import PhoneInput, { Country, PhoneInputTheme } from 'react-native-phone-number-input';
 
-### Step 3
+const customTheme: PhoneInputTheme = {
+  flagShape: 'round',
+  inputBackground: '#F0F0F0',
+};
 
-- 🔃 Create a new pull request using <a href="https://github.com/garganurag893/react-native-phone-number-input" target="_blank">`https://github.com/garganurag893/react-native-phone-number-input`</a>.
+const handleCountryChange = (country: Country) => {
+  console.log(country.name, country.code, country.callingCode);
+};
+```
 
-## Support
+## Complete Example
 
-Reach out to me at one of the following places!
+```tsx
+import React, { useState, useRef } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import PhoneInput from 'react-native-phone-number-input';
 
-- Twitter at <a href="https://twitter.com/AnuragG94634191" target="_blank">https://twitter.com/AnuragG94634191</a>
-- Medium at <a href="https://medium.com/@garganurag893" target="_blank">https://medium.com/@garganurag893</a>
-- Instagram at <a href="https://www.instagram.com/the_only_anurag/" target="_blank">https://www.instagram.com/the_only_anurag/</a>
-- Email at garganurag893@gmail.com
+export default function App() {
+  const [value, setValue] = useState('');
+  const [formattedValue, setFormattedValue] = useState('');
+  const [valid, setValid] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const phoneInput = useRef<PhoneInput>(null);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Phone Number Input</Text>
+      
+      <PhoneInput
+        ref={phoneInput}
+        defaultValue={value}
+        defaultCode="US"
+        layout="first"
+        onChangeText={(text) => {
+          setValue(text);
+        }}
+        onChangeFormattedText={(text) => {
+          setFormattedValue(text);
+          setValid(phoneInput.current?.isValidNumber(text) || false);
+        }}
+        onChangeCountry={(country) => {
+          console.log('Country changed:', country);
+        }}
+        withDarkTheme
+        withShadow
+        autoFocus
+        theme={{
+          flagShape: 'round',
+          inputBackground: '#F8F9FA',
+          containerBackground: 'transparent',
+        }}
+        codeLabel="Country Code"
+        phoneNumberLabel="Mobile Number"
+        placeholder="Enter your phone number"
+        searchPlaceholder="Search for country..."
+      />
+      
+      {showMessage && (
+        <View style={styles.message}>
+          <Text>Value: {value}</Text>
+          <Text>Formatted: {formattedValue}</Text>
+          <Text>Valid: {valid ? 'true' : 'false'}</Text>
+        </View>
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  message: {
+    marginTop: 20,
+    padding: 15,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 8,
+  },
+});
+```
 
 ## License
 
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+MIT
 
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+## Contributing
 
-## Hire
-
-Looking for a React/React-Native Freelance Expert? Email at garganurag893@gmail.com
-
-[react-native-country-picker-modal]: https://github.com/xcarpentier/react-native-country-picker-modal
+Contributions are welcome! Please feel free to submit a Pull Request.
