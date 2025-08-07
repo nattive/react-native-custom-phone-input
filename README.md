@@ -2,7 +2,11 @@
 
 A comprehensive, feature-rich phone number input component for React Native with country picker, validation, theming, and customization options.
 
-![Demo](./gif/Phone_Input_2.gif)
+![Demo](./gif/phone-number-input.gif)
+
+<p align="center">
+  <img src="./gif/Screenshot_1754551769.png" alt="Screenshot" width="300"/>
+</p>
 
 ## Features
 
